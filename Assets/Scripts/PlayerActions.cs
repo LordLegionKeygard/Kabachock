@@ -11,12 +11,17 @@ public class PlayerActions : MonoBehaviour
     private bool _isGround;
     private bool _isInAir;
     [SerializeField] private LayerMask groundMask;
-    private float _gravity = -20f;
+    private float _gravity = -20;
     private float _groundDistance = 0.6f;
     private float _airDistance = 1;
     private Vector3 _velocity;
     private float _velocityUpdateY = -5;
     private float _jumpHeight = 1.5f;
+
+    [Header("Attack")]
+    [SerializeField] private float _attackTime = 2;
+    private bool _isAttack;
+    private IEnumerator _attackCoroutine;
 
     private void Awake()
     {
@@ -64,5 +69,28 @@ public class PlayerActions : MonoBehaviour
             _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
             IsJump = true;
         }
+    }
+
+    public void Attack()
+    {
+        if (_isAttack) return;
+
+        AttackTimer();
+        var rnd = Random.Range(1, 5);
+        _playerAnimator.AnimatorAttack(rnd);
+    }
+
+    private void AttackTimer()
+    {
+        _isAttack = true;
+        if (_attackCoroutine != null) StopCoroutine(_attackCoroutine);
+        _attackCoroutine = AttackCoroutine();
+        StartCoroutine(_attackCoroutine);
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        yield return new WaitForSeconds(_attackTime);
+        _isAttack = false;
     }
 }

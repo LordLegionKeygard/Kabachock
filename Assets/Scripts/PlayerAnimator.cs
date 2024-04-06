@@ -18,4 +18,28 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetTrigger(name);
     }
+
+    public void AnimatorAttack(int number)
+    {
+        _animator.SetInteger(AnimatorStrings.Attack, number);
+        Invoke(nameof(ResetAttackAnimation), 0.1f);
+    }
+
+    private void ResetAttackAnimation()
+    {
+        _animator.SetInteger(AnimatorStrings.Attack, 0);
+    }
+
+    public void EnableDamageCollider()
+    {
+        CustomEvents.FireToggleDamageCollider(true);
+        //Attack Sound
+    }
+
+    public void DisableDamageCollider()
+    {
+        CustomEvents.FireToggleDamageCollider(false);
+    }
+
+
 }
