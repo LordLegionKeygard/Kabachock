@@ -3,6 +3,7 @@ using UnityEngine;
 public class DestructionHealth : MonoBehaviour
 {
     [SerializeField] ParticleSystem _ps;
+    [SerializeField] private AudioSource[] _audioSource;
     private CellFractureImpulse _cellFractureImpulse;
     private Collider _collider;
     private Reward _reward;
@@ -15,7 +16,8 @@ public class DestructionHealth : MonoBehaviour
 
     public virtual void TakeDamage()
     {
-        // _ps.Play();
+        _audioSource[Random.Range(0,_audioSource.Length)].Play();
+        _ps.Play();
         _collider.enabled = false;
         _cellFractureImpulse.PrepareObject();
         _reward.AddScore();

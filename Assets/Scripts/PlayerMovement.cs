@@ -5,8 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerActions _playerActions;
+    private CharacterController _characterController;
     private Animator _animator;
     private PlayerInput _playerInput;
+    [SerializeField] private float _moveSpeed;
     private float _rotationSpeed = 600;
     private float _velocityMove;
     private float acceleration = 0.1f;
@@ -14,12 +17,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        _characterController = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
+        _playerActions = GetComponent<PlayerActions>();
     }
 
     private void Update()
     {
+        if(_playerActions.IsAttack) return;
         Move();
     }
 
@@ -37,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
             Quaternion rotationToMoveDirection = Quaternion.LookRotation(moveDirection, Vector3.up);
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToMoveDirection, _rotationSpeed * Time.deltaTime);
+
+            _characterController.Move(moveDirection.normalized * _moveSpeed * Time.deltaTime);
 
             if (_velocityMove < 1.0f)
             {

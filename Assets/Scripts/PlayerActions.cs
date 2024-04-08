@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    private PlayerSounds _playerSounds;
     private CharacterController _characterController;
     private PlayerAnimator _playerAnimator;
     public bool _isJump = false;
@@ -22,12 +23,14 @@ public class PlayerActions : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float _attackTime = 2;
     private bool _isAttack;
+    public bool IsAttack => _isAttack;
     private IEnumerator _attackCoroutine;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         _playerAnimator = GetComponent<PlayerAnimator>();
+        _playerSounds = GetComponent<PlayerSounds>();
     }
 
     private void Update()
@@ -65,6 +68,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (!_isJump)
         {
+            _playerSounds.JumpSound();
             _playerAnimator.AnimatorSetTrigger(AnimatorStrings.Jump);
             _velocity.y = Mathf.Sqrt(-_jumpHeight * _gravity);
             _isJump = true;
