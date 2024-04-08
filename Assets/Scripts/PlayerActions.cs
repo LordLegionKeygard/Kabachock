@@ -6,17 +6,18 @@ public class PlayerActions : MonoBehaviour
 {
     private CharacterController _characterController;
     private PlayerAnimator _playerAnimator;
-    public bool IsJump = false;
-    private float _nextJumpTime = 1.8f;
+    public bool _isJump = false;
+    private float _currentJumpTime;
+    private float _nextTimeJump = 2;
     private bool _isGround;
-    private bool _isInAir;
+    [SerializeField] private bool _isInAir;
     [SerializeField] private LayerMask groundMask;
-    private float _gravity = -20;
-    private float _groundDistance = 0.6f;
-    private float _airDistance = 1;
+    [SerializeField] private float _gravity = -10;
+    [SerializeField] private float _groundDistance = 0.6f;
+    [SerializeField] private float _airDistance = 1;
     private Vector3 _velocity;
-    private float _velocityUpdateY = -5;
-    private float _jumpHeight = 1.5f;
+    [SerializeField] private float _velocityUpdateY = -1.5f;
+    [SerializeField] private float _jumpHeight = 2f;
 
     [Header("Attack")]
     [SerializeField] private float _attackTime = 2;
@@ -37,13 +38,13 @@ public class PlayerActions : MonoBehaviour
 
     private void CheckNextJump()
     {
-        if (IsJump)
+        if (_isJump)
         {
-            _nextJumpTime -= Time.deltaTime;
-            if (_nextJumpTime < 0)
+            _currentJumpTime -= Time.deltaTime;
+            if (_currentJumpTime < 0)
             {
-                IsJump = false;
-                _nextJumpTime = 1.8f;
+                _isJump = false;
+                _currentJumpTime = _nextTimeJump;
             }
         }
     }
@@ -54,26 +55,25 @@ public class PlayerActions : MonoBehaviour
         _isInAir = Physics.CheckSphere(transform.position, _airDistance, groundMask);
         if (_isGround && _velocity.y < 0) _velocity.y = _velocityUpdateY;
         {
-            _velocity.y += _gravity * Time.deltaTime;
-            if (_characterController.enabled == true)
-                _characterController.Move(_velocity * Time.deltaTime);
+            _velocity.y += _gravity/2 * Time.deltaTime;
+            _characterController.Move(_velocity * Time.deltaTime);
         }
-        // _playerAnimator.PlayTargetBoolAnimation(!_isInAir, AnimatorStrings.IsInAir);
+        _playerAnimator.PlayTargetBoolAnimation(!_isInAir, AnimatorStrings.IsInAir);
     }
 
     public void Jump()
     {
-        if (!IsJump)
+        if (!_isJump)
         {
             _playerAnimator.AnimatorSetTrigger(AnimatorStrings.Jump);
-            _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
-            IsJump = true;
+            _velocity.y = Mathf.Sqrt(-_jumpHeight * _gravity);
+            _isJump = true;
         }
     }
 
     public void Attack()
     {
-        if (_isAttack) return;
+        if (_isAttack || _isJump) return;
 
         AttackTimer();
         var rnd = Random.Range(1, 5);
