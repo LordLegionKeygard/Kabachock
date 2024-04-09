@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackColliderToggle : MonoBehaviour
 {
-    private Collider _damageCollider;
+    private Collider damageCollider;
 
     private void Awake()
     {
-        _damageCollider = GetComponent<Collider>();
+        damageCollider = GetComponent<Collider>();
         CustomEvents.OnToggleDamageCollider += ColliderToggle;
     }
 
     private void ColliderToggle(bool state)
     {
-        _damageCollider.enabled = state;
+        damageCollider.enabled = state;
     }
 
     private void OnDestroy()

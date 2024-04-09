@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Reward : MonoBehaviour
 {
-    [SerializeField] private Eggs _eggs;
+    [SerializeField] private Eggs egg;
 
     public void AddScore()
     {
-        CustomEvents.FireAddScore(_eggs.Score);
+        CustomEvents.FireAddScore(egg.Score);
     }
 }

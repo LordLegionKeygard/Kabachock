@@ -1320,7 +1320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3071483785561046585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.626, y: 0.678, z: -0.078}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3c7d4a06dcfaa4e8ab63e84c40827c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eggs: {fileID: 11400000, guid: 0dce440d199d9de42a09d1fe34018afc, type: 2}
+  egg: {fileID: 11400000, guid: 0dce440d199d9de42a09d1fe34018afc, type: 2}
 --- !u!114 &3071483785561046587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1385,13 +1385,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5078b366a047940b452278fea8b5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minForce: 15
-  _maxForce: 100
-  _minRadius: 1
-  _maxRadius: 15
-  _mainObject: {fileID: 4446343218291184297}
-  _allCells: {fileID: 7423462407746699249}
-  _rbCells:
+  minForce: 15
+  maxForce: 100
+  minRadius: 1
+  maxRadius: 15
+  mainObject: {fileID: 4446343218291184297}
+  allCells: {fileID: 7423462407746699249}
+  rbCells:
   - {fileID: 1661950627224135800}
   - {fileID: 2026349626046785548}
   - {fileID: 2014087883245269826}
@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509fd0cce85e48e40aa357ddcfb5ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ps: {fileID: 5179723173191627799}
-  _audioSource:
+  particle: {fileID: 5179723173191627799}
+  audioSource:
   - {fileID: 8130936403192015997}
   - {fileID: 5896947397407039907}
   - {fileID: 8709224536960355657}

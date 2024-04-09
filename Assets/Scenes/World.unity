@@ -5101,7 +5101,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278239487
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6122,7 +6122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.47252777, y: -0.000000033908304, z: 0.000000018180334, w: 0.8813158}
+  m_LocalRotation: {x: 0.47252777, y: 0.00000003390831, z: -0.000000018180337, w: 0.8813158}
   m_LocalPosition: {x: -1.05, y: 4.56, z: -5.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12381,7 +12381,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757236019}
-  m_LocalRotation: {x: 0.47252777, y: -0.000000021445489, z: 0.0000000114982495, w: 0.8813158}
+  m_LocalRotation: {x: 0.47252777, y: 0.0000000214455, z: -0.000000011498255, w: 0.8813158}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18635,7 +18635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d11a14e5a68a242b92899ea4edcd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1.8
+  moveSpeed: 1.8
 --- !u!114 &1209290020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18660,17 +18660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974adc1855c049b459c968d94b374aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isJump: 0
-  _isInAir: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _gravity: -15
-  _groundDistance: 0.3
-  _airDistance: 0.3
-  _velocityUpdateY: -1.5
-  _jumpHeight: 1
-  _attackTime: 1.3
+  isJump: 0
 --- !u!114 &1209290022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18683,29 +18676,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279793c0243641f4a8c03389ecb9b25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _claws:
+  claws:
   - {fileID: 1069322426}
   - {fileID: 217776544}
   - {fileID: 565116805}
   - {fileID: 235895327}
   - {fileID: 663915743}
-  _bites:
+  bites:
   - {fileID: 34030024}
   - {fileID: 502848637}
   - {fileID: 54790688}
-  _jump: {fileID: 664215294}
-  _otherFootsteps:
+  jump: {fileID: 664215294}
+  otherFootsteps:
   - {fileID: 89788218}
   - {fileID: 499152210}
   - {fileID: 309513276}
   - {fileID: 569516437}
-  _grassFootsteps:
+  grassFootsteps:
   - {fileID: 159284342}
   - {fileID: 319339281}
   - {fileID: 1887838383}
   - {fileID: 1475452853}
-  _rayPoint: {fileID: 562178464}
-  _layerMask:
+  rayPoint: {fileID: 562178464}
+  layerMask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!4 &1209805227 stripped
@@ -20067,7 +20060,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329472165}
-  m_LocalRotation: {x: 0.47252777, y: -0.000000021445489, z: 0.0000000114982495, w: 0.8813158}
+  m_LocalRotation: {x: 0.47252777, y: 0.0000000214455, z: -0.000000011498255, w: 0.8813158}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25183,10 +25176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132febb993018a649b70a15d1b95f808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 290339711}
-  _currentScore: 0
-  _scoreText: {fileID: 290339709}
-  _takePoint: {fileID: 259664458}
+  animator: {fileID: 290339711}
+  currentScore: 0
+  scoreText: {fileID: 290339709}
+  takePoint: {fileID: 259664458}
 --- !u!4 &1789408553 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4962039562683002, guid: bbc12ae2f967ec04e8c3c39eeb92733b,
@@ -27089,7 +27082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517454ec22a426041b2f2f30fa2369b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eggsType:
+  eggObjects:
   - {fileID: 3071483785561046585, guid: 18d71871b0b94484fa9fd415eda76795, type: 3}
   - {fileID: 1019926346802419939, guid: 82b95eb2f16e4f44baef29d8a0b88ab5, type: 3}
   - {fileID: 7274779957944923482, guid: d5e11456930055f4e82b9d1e477475b2, type: 3}

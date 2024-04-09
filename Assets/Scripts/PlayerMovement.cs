@@ -1,37 +1,35 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerActions _playerActions;
-    private CharacterController _characterController;
-    private Animator _animator;
-    private PlayerInput _playerInput;
-    [SerializeField] private float _moveSpeed;
-    private float _rotationSpeed = 600;
-    private float _velocityMove;
+    private PlayerActions playerActions;
+    private CharacterController characterController;
+    private Animator animator;
+    private PlayerInput playerInput;
+    [SerializeField] private float moveSpeed;
+    private float rotationSpeed = 600;
+    private float velocityMove;
     private float acceleration = 0.1f;
     private float deceleration = 0.5f;
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
-        _playerInput = GetComponent<PlayerInput>();
-        _animator = GetComponent<Animator>();
-        _playerActions = GetComponent<PlayerActions>();
+        characterController = GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
+        playerActions = GetComponent<PlayerActions>();
     }
 
     private void Update()
     {
-        if(_playerActions.IsAttack) return;
+        if(playerActions.IsAttack) return;
         Move();
     }
 
     private void Move()
     {
-        Vector2 input = _playerInput.actions["Move"].ReadValue<Vector2>();
+        Vector2 input = playerInput.actions["Move"].ReadValue<Vector2>();
         Vector3 direction = new Vector3(input.x, 0, input.y).normalized;
 
         if (direction.magnitude >= 0.5f)
@@ -42,23 +40,21 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDirection = rotationToCamera * direction;
             Quaternion rotationToMoveDirection = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToMoveDirection, _rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToMoveDirection, rotationSpeed * Time.deltaTime);
 
-            _characterController.Move(moveDirection.normalized * _moveSpeed * Time.deltaTime);
+            characterController.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
 
-            if (_velocityMove < 1.0f)
-            {
-                _velocityMove += Time.deltaTime * acceleration;
-            }
+            if (velocityMove < 1.0f)
+                velocityMove += Time.deltaTime * acceleration;
         }
         else
         {
-            if (_velocityMove > 0.0f)
-                _velocityMove -= Time.deltaTime * deceleration;
+            if (velocityMove > 0.0f)
+                velocityMove -= Time.deltaTime * deceleration;
 
         }
-        _animator.SetFloat("moveX", input.x);
-        _animator.SetFloat("moveZ", input.y);
-        _animator.SetFloat(AnimatorStrings.Speed, _velocityMove);
+        animator.SetFloat("moveX", input.x);
+        animator.SetFloat("moveZ", input.y);
+        animator.SetFloat(AnimatorStrings.Speed, velocityMove);
     }
 }

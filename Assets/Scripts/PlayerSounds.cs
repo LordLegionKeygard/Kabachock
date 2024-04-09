@@ -4,46 +4,46 @@ using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
 {
-    [SerializeField] private AudioSource[] _claws;
-    [SerializeField] private AudioSource[] _bites;
-    [SerializeField] private AudioSource _jump;
+    [SerializeField] private AudioSource[] claws;
+    [SerializeField] private AudioSource[] bites;
+    [SerializeField] private AudioSource jump;
 
     [Header("Footsteps")]
-    [SerializeField] private AudioSource[] _otherFootsteps;
-    [SerializeField] private AudioSource[] _grassFootsteps;
-    [SerializeField] private Transform _rayPoint;
-    [SerializeField] private LayerMask _layerMask;
-    private float _rayDistance = 0.5f;
+    [SerializeField] private AudioSource[] otherFootsteps;
+    [SerializeField] private AudioSource[] grassFootsteps;
+    [SerializeField] private Transform rayPoint;
+    [SerializeField] private LayerMask layerMask;
+    private float rayDistance = 0.5f;
     private RaycastHit _hit;
 
     public void ClawsSound()
     {
-        var rnd = Random.Range(0, _claws.Length);
+        var rnd = Random.Range(0, claws.Length);
 
-        _claws[rnd].Play();
+        claws[rnd].Play();
     }
 
     public void BiteSound()
     {
-        var rnd = Random.Range(0, _bites.Length);
+        var rnd = Random.Range(0, bites.Length);
 
-        _bites[rnd].Play();
+        bites[rnd].Play();
     }
 
-    public void JumpSound() => _jump.Play();
+    public void JumpSound() => jump.Play();
 
     public void FootStepSound()
     {
         var rnd = Random.Range(0, 4);
-        if (Physics.Raycast(_rayPoint.position, Vector3.down, out _hit, _rayDistance, _layerMask))
+        if (Physics.Raycast(rayPoint.position, Vector3.down, out _hit, rayDistance, layerMask))
         {
             switch (_hit.collider.tag)
             {
                 case WorldGameInfo.Other:
-                    _otherFootsteps[rnd].Play();
+                    otherFootsteps[rnd].Play();
                     break;
                 case WorldGameInfo.GrassTag:
-                    _grassFootsteps[rnd].Play();
+                    grassFootsteps[rnd].Play();
                     break;
             }
         }

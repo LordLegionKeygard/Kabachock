@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class DestructionHealth : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _ps;
-    [SerializeField] private AudioSource[] _audioSource;
-    private CellFractureImpulse _cellFractureImpulse;
-    private Collider _collider;
-    private Reward _reward;
+    [SerializeField] ParticleSystem particle;
+    [SerializeField] private AudioSource[] audioSource;
+    private CellFractureImpulse cellFractureImpulse;
+    private Collider eggCollider;
+    private Reward reward;
     private void Awake()
     {
-        _cellFractureImpulse = GetComponent<CellFractureImpulse>();
-        _collider = GetComponent<Collider>();
-        _reward = GetComponent<Reward>();
+        cellFractureImpulse = GetComponent<CellFractureImpulse>();
+        eggCollider = GetComponent<Collider>();
+        reward = GetComponent<Reward>();
     }
 
     public virtual void TakeDamage()
     {
-        _audioSource[Random.Range(0,_audioSource.Length)].Play();
-        _ps.Play();
-        _collider.enabled = false;
-        _cellFractureImpulse.PrepareObject();
-        _reward.AddScore();
+        audioSource[Random.Range(0,audioSource.Length)].Play();
+        particle.Play();
+        eggCollider.enabled = false;
+        cellFractureImpulse.PrepareObject();
+        reward.AddScore();
     }
 }

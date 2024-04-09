@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EggSpawnSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _eggsType;
-    private int _eggsCount = 60;
+    [SerializeField] private GameObject[] eggObjects;
+    private int eggsCount = 60;
 
     private void Start()
     {
@@ -12,19 +12,17 @@ public class EggSpawnSystem : MonoBehaviour
 
     private void SpawnEggs()
     {
-        for (int i = 0; i < _eggsCount; i++)
-        {
+        for (int i = 0; i < eggsCount; i++)
             Instantiate(SelectEgg(), SelectEggPosition(), Quaternion.identity);
-        }
     }
 
     private GameObject SelectEgg()
     {
         var rnd = Random.Range(0, 100);
 
-        if (rnd < 10) return _eggsType[(int)EggType.Epic];
-        else if (rnd < 30) return _eggsType[(int)EggType.Rare];
-        else return _eggsType[(int)EggType.Common];
+        if (rnd < 10) return eggObjects[(int)EggType.Epic];
+        else if (rnd < 30) return eggObjects[(int)EggType.Rare];
+        else return eggObjects[(int)EggType.Common];
     }
 
     private Vector3 SelectEggPosition()

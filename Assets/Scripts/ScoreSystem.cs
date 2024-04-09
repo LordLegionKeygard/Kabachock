@@ -5,10 +5,10 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
-    [SerializeField] private int _currentScore;
-    [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private AudioSource _takePoint;
+    [SerializeField] private Animator animator;
+    [SerializeField] private int currentScore;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private AudioSource takePoint;
 
     private void Awake()
     {
@@ -17,10 +17,10 @@ public class ScoreSystem : MonoBehaviour
 
     private void ChangeScore(int number)
     {
-        _currentScore += number;
-        _scoreText.text = _currentScore.ToString();
-        _takePoint.Play();
-        _animator.SetTrigger(AnimatorStrings.AddScore);
+        currentScore += number;
+        scoreText.text = currentScore.ToString();
+        takePoint.Play();
+        animator.SetTrigger(AnimatorStrings.AddScore);
     }
 
     private void OnDestroy()
